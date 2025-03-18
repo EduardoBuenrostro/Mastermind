@@ -12,6 +12,15 @@ El programa cuenta con un modo manual, donde el jugador introduce sus intentos, 
 - **Interfaz visual con Matplotlib:** Se muestra un tablero con los intentos y pistas.
 - **Análisis detallado de intentos:** Se identifican aciertos exactos y parciales.
 
+## Clonación del Repositorio
+
+Para obtener el código fuente, crea una carpeta y clona el repositorio desde GitHub con el siguiente comando:
+
+```bash
+git clone https://github.com/EduardoBuenrostro/Mastermind.git
+cd Mastermind
+```
+
 ## Requisitos
 
 Para ejecutar el código, asegúrate de tener instaladas las siguientes dependencias:
