@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import random
 import os
+import time
 
 #Asiganación del código de colores a resolver
 def asignacion():
@@ -13,7 +14,7 @@ def asignacion():
 
 #Para poder introducir un intento manualmente
 def introducir():
-    print('Introduzca los colores en inglés')
+    print('\nIntroduzca los colores en inglés')
     canicasIngles = []
     for i in range(4):
         canicasIngles.append(input('Introduzca la canica '+str(i+1)+': '))
@@ -98,11 +99,11 @@ def imprimirIntentos(intentos, reales):
         plt.plot( [0,0], [-1,i+0.5], color='black')
       
     plt.plot()
-    plt.show()
+    plt.show()   
         
 def juegoManual():
     canicas = asignacion()
-    print(canicas)
+    
     intentos = []
     i = 0
     aniadirIntento(intentos)
@@ -115,13 +116,32 @@ def juegoManual():
         i += 1
         comparacion = comparar(intentos[i], canicas)
 
+    print("\nHas ganado, el código correcto es:",canicas)
+
 def juegoAuto():
     canicas = asignacion()
     colores = ['red','green','yellow','blue','purple','orange','black','pink']
     intentos = []
     probando=['','','','']
     espacios=[0,1,2,3]
-    print(canicas)
+    print("\nLa forma de jugar es la siguiente:")
+    print("1. El juego va a generar un código de colores que son representados como canícas en pantalla.")
+    print("     Para este caso en específico, el código es el siguiente: ", canicas)
+    print("2. Siempre habrá cuatro canícas en cada juego.")
+    print("3. Cada caníca del código tendrá un color único e irrepetible.")
+    print("4. Los posibles colores de las canícas son los siguientes: ", colores)
+    print("5. En cada intento podrás elegir cuatro colores, uno para cada caníca.")
+    print("6. Si te sirve para tu estrategia, puedes repetir colores en el mismo intento.")
+    print("7. Después de cada intento, se mostrará en pantalla los colores que elegiste.")
+    print("8. Del lado izquierdo de la pantalla, se mostrarán cuatro 'x'.")
+    print("     Las 'x' en rojo representan la cantidad de colores colocados que no existen en la respuesta.")
+    print("     La cantidad de 'x' amarillas representan la cantidad de colores que tienes bien, están en la respuesta, pero no están en el orden correcto.")
+    print("     Las 'x' en verde representan cuantas canícas has acertado, tanto en color, como en posición.")
+    print(" Debes tener presente que las 'x' solo representan la cantidad, más no la posición de las canícas en tu intento.")
+    print("9. Deberás analizar detenidamente las pistas para saber como hacer tu próximo movimiento.")
+    print("10. Al tener todas las canícas con el color y la posición correctas, habrás ganado.")
+    print("\n NOTA: Después de introducir cada intento, se mostrará en pantalla una nueva ventana con el tablero, por favor cierra la ventana antes de continuar con el siguiente intento.")
+    print("\n A continuación se muestra un ejemplo de la resolución automática del código generado en este intento: ")
     
     while probando!=canicas:
         for i in espacios:
@@ -166,7 +186,7 @@ def juegoAuto():
         print(comparacion)
         imprimirIntentos(intentos, canicas)
     if probando == canicas:
-        print("Has ganado, el código correcto es:",canicas)
+        print("\nHas ganado, el código correcto es:",canicas)
     
 def titulo():
     os.system("figlet Mastermind")
