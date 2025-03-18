@@ -14,10 +14,10 @@ def asignacion():
 #Para poder introducir un intento manualmente
 def introducir():
     print('Introduzca los colores en inglés')
-    canicasi = []
+    canicasIngles = []
     for i in range(4):
-        canicasi.append(input('Introduzca la canica '+str(i+1)+': '))
-    return canicasi
+        canicasIngles.append(input('Introduzca la canica '+str(i+1)+': '))
+    return canicasIngles
  
 #Para determinar las canicas acertadas    
 def comparar(turno,reales):
@@ -42,22 +42,22 @@ def comparar(turno,reales):
     return comparacion
 
 #Para ir guardando los intentos en una lista
-def aniadirintento(intentos):
+def aniadirIntento(intentos):
     intento = introducir()
-    intentosn = intentos
-    intentosn.append(intento)
-    return intentosn
+    intentosNuevos = intentos
+    intentosNuevos.append(intento)
+    return intentosNuevos
 
-def aniadirintentoAuto(intentos,turno):
+def aniadirIntentoAuto(intentos,turno):
     intento = []
     for i in range(len(turno)):
         intento.append(turno[i])
-    intentosn = intentos
-    intentosn.append(intento)
-    return intentosn
+    intentosNuevos = intentos
+    intentosNuevos.append(intento)
+    return intentosNuevos
 
 #Para imprimir en pantalla nuestros intentos
-def imprimirintentos(intentos, reales):
+def imprimirIntentos(intentos, reales):
     n = len(intentos)
     
     colores = ['red','green','yellow','blue','purple','orange','black','pink']
@@ -100,18 +100,18 @@ def imprimirintentos(intentos, reales):
     plt.plot()
     plt.show()
         
-def juegomanual():
+def juegoManual():
     canicas = asignacion()
     print(canicas)
     intentos = []
     i = 0
-    aniadirintento(intentos)
-    imprimirintentos(intentos, canicas)
+    aniadirIntento(intentos)
+    imprimirIntentos(intentos, canicas)
     
     comparacion = comparar(intentos[0], canicas)
     while not(comparacion[0]==4):
-        aniadirintento(intentos)
-        imprimirintentos(intentos, canicas)
+        aniadirIntento(intentos)
+        imprimirIntentos(intentos, canicas)
         i += 1
         comparacion = comparar(intentos[i], canicas)
 
@@ -128,7 +128,7 @@ def juegoAuto():
             probando[i]=colores[random.randint(0, len(colores)-1)]
         print(probando, end=" ")
         
-        aniadirintentoAuto(intentos,probando)
+        aniadirIntentoAuto(intentos,probando)
         
         acertadas = 0
         exactas = 0
@@ -164,7 +164,7 @@ def juegoAuto():
         comparacion.append(exactas)
         comparacion.append(acertadas)
         print(comparacion)
-        imprimirintentos(intentos, canicas)
+        imprimirIntentos(intentos, canicas)
     if probando == canicas:
         print("Has ganado, el código correcto es:",canicas)
     
@@ -180,7 +180,7 @@ def menu():
         opcion = input("\nSeleccione una opción: ")
         
         if opcion == '1':
-            juegomanual()
+            juegoManual()
         elif opcion == '2':
             juegoAuto()
         elif opcion == '3':
