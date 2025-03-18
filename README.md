@@ -4,6 +4,14 @@ Esta es una versión del juego Mastermind implementado completamnete en Python, 
 
 El programa cuenta con un modo manual, donde el jugador introduce sus intentos, y un modo automático, en el que un algoritmo de búsqueda inteligente resuelve el código de manera óptima. Además, el juego genera un tablero gráfico que representa los intentos realizados y las pistas obtenidas.
 
+## Características
+
+- **Generación aleatoria del código secreto.**
+- **Modo Manual:** Introduce colores y recibe pistas para deducir la combinación correcta.
+- **Modo Automático:** Un algoritmo resuelve el código sin intervención del usuario.
+- **Interfaz visual con Matplotlib:** Se muestra un tablero con los intentos y pistas.
+- **Análisis detallado de intentos:** Se identifican aciertos exactos y parciales.
+
 ## Requisitos
 
 Para ejecutar el código, asegúrate de tener instaladas las siguientes dependencias:
