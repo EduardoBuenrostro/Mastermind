@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import random
+import os
 
 #Asiganación del código de colores a resolver
 def asignacion():
@@ -167,4 +168,27 @@ def juegoAuto():
     if probando == canicas:
         print("Has ganado, el código correcto es:",canicas)
     
-juegomanual()
+def titulo():
+    os.system("figlet Mastermind")
+
+def menu():
+    while True:
+        print("\nMenú:")
+        print("1. Jugar")
+        print("2. Autoplay")
+        print("3. Salir")
+        opcion = input("\nSeleccione una opción: ")
+        
+        if opcion == '1':
+            juegomanual()
+        elif opcion == '2':
+            juegoAuto()
+        elif opcion == '3':
+            print("Saliendo del juego.")
+            break
+        else:
+            print("Opción no válida. Intente de nuevo.")
+
+if __name__ == "__main__":
+    titulo()
+    menu()
