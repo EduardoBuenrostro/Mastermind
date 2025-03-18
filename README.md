@@ -26,7 +26,14 @@ cd Mastermind
 Para ejecutar el código, asegúrate de tener instaladas las siguientes dependencias:
 
 ### Usando Conda:
-Si deseas configurar el entorno con Conda, usa el archivo `environment.yml`:
+En caso de no tener instalado Conda, puedes usar los siguientes comandos:
+```bash
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+```
+Sigue las instrucciones en pantalla y una vez termines, reinicia tu terminal.
+
+Una vez que tenemos instalado Conda y si deseas configurar el entorno des esta manera, usa el archivo `environment.yml`:
 ```bash
 conda env create -f environment.yml
 conda activate mastermind
