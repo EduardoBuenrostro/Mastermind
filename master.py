@@ -6,19 +6,19 @@ import time
 #Asiganación del código de colores a resolver
 def asignacion():
     canicas = []
-    colores = ['red','green','yellow','blue','purple','orange','black','pink']
-    for i in range(4):
+    colores = ['red','green','yellow','blue','purple','orange','black','pink'] #Posibles colores
+    for i in range(4): #Ciclo que añade semialeatoriamente cuatro colores distintos a una lista.
         rand= random.randint(0,len(colores)-1)
-        canicas.append(colores.pop(rand))
+        canicas.append(colores.pop(rand)) #Eliminamos el color seleccionado para que no se repita
     return canicas
 
 #Para poder introducir un intento manualmente
 def introducir():
-    print('\nIntroduzca los colores en inglés')
+    print('\nIntroduzca los colores en inglés') #En una futura actualización voy a añadir manejo de errores con una mejor manera de elegir los colores
     canicasIngles = []
-    for i in range(4):
+    for i in range(4): #Con un ciclo le pedimos al usuario las canícas una por una
         canicasIngles.append(input('Introduzca la canica '+str(i+1)+': '))
-    return canicasIngles
+    return canicasIngles #NOTA: Importante mejorar, pues si escriben mal un color, truena
  
 #Para determinar las canicas acertadas    
 def comparar(turno,reales):
@@ -26,10 +26,10 @@ def comparar(turno,reales):
     exactas = 0
     comparacion = []
     auxiliar = []
-    for copia in range(len(reales)):
+    for copia in range(len(reales)): #Copiamos el código a adivinar en una lista auxiliar
         auxiliar.append(reales[copia])
         
-    for i in range(len(turno)):
+    for i in range(len(turno)): #Comparamos color y posición y vamos guardando la cantidad de aciettos de cada opción
         for j in range(len(turno)):
             if auxiliar[i]==turno[j]:
                 if auxiliar[i]==turno[i]:
@@ -40,14 +40,14 @@ def comparar(turno,reales):
         
     comparacion.append(exactas)
     comparacion.append(acertadas)
-    return comparacion
+    return comparacion #Regresa una lista con dos cantidades, de exactas y acertadas (color presente en mala posición)
 
 #Para ir guardando los intentos en una lista
 def aniadirIntento(intentos):
-    intento = introducir()
-    intentosNuevos = intentos
+    intento = introducir() #Guardamos un nuevo intento
+    intentosNuevos = intentos #Guardamos los intentos previos en una lista
     intentosNuevos.append(intento)
-    return intentosNuevos
+    return intentosNuevos #Al final esta función sirve en síntesis, para guardar todos los intentos que se han hecho y generar uno nuevo.
 
 def aniadirIntentoAuto(intentos,turno):
     intento = []
@@ -55,26 +55,30 @@ def aniadirIntentoAuto(intentos,turno):
         intento.append(turno[i])
     intentosNuevos = intentos
     intentosNuevos.append(intento)
-    return intentosNuevos
+    return intentosNuevos #Esta función hace exactamente lo mismo que la anterior, solo que no pide al usuario un nuevo intento, lo genera en automático.
 
 #Para imprimir en pantalla nuestros intentos
 def imprimirIntentos(intentos, reales):
     n = len(intentos)
     
-    colores = ['red','green','yellow','blue','purple','orange','black','pink']
+    colores = ['red','green','yellow','blue','purple','orange','black','pink'] #Lista de colores para imprimir (graficar) en pantalla.
+#Mediante un ciclo imprimimos 'o' en pantalla que representan los 8 colores posibles.
+#Además vamos imprimiendo las lineas que nos sirven como borde del tablero.
     for color in range(8):
         plt.plot( [0.66+(0.66*color),0.66+(0.66*color)], [-0.75,-0.75], marker='o', color=colores[color])
     plt.plot( [0,6], [-0.5,-0.5], color='black')
     plt.plot( [0,6], [-1,-1], color='black')
     
+
     for i in range(n):
-        
+    #Guardamos la información de nuestras cruces o 'x' que vamos a colocar en pantalla, principalmente la cantidad.    
         comparadas = comparar(intentos[i], reales)
         acertadas = comparadas[1]
         exactas = comparadas[0]
         malas = 4-acertadas-exactas
         cruces = []
-        
+
+#Imprimimos en pantalla la cantidad de cruces dependiendo de cuantas cruces de cada color existan        
         if exactas > 0:
             for k in range(exactas):
                 cruces.append('green')
@@ -97,10 +101,12 @@ def imprimirIntentos(intentos, reales):
         plt.plot( [4.5,4.5], [-0.5,i+0.5], color='black')
         plt.plot( [6,6], [-1,i+0.5], color='black')
         plt.plot( [0,0], [-1,i+0.5], color='black')
-      
+
+      #Generamos la gráfica y la mostramos en una nueva ventana
     plt.plot()
     plt.show()   
-        
+
+#Se genera un juego manual        
 def juegoManual():
     canicas = asignacion()
     
@@ -118,6 +124,8 @@ def juegoManual():
 
     print("\nHas ganado, el código correcto es:",canicas)
 
+#Se genera un juego automatico con todo e instrucciones
+#Incluye un algoritmo de resolución automática 100% infalible
 def juegoAuto():
     canicas = asignacion()
     colores = ['red','green','yellow','blue','purple','orange','black','pink']
@@ -187,10 +195,12 @@ def juegoAuto():
         imprimirIntentos(intentos, canicas)
     if probando == canicas:
         print("\nHas ganado, el código correcto es:",canicas)
-    
+
+#Genera un título bonito    
 def titulo():
     os.system("figlet Mastermind")
 
+#Genera un menú básico
 def menu():
     while True:
         print("\nMenú:")
@@ -209,6 +219,7 @@ def menu():
         else:
             print("Opción no válida. Intente de nuevo.")
 
+#Inicia el título y menú
 if __name__ == "__main__":
     titulo()
     menu()
