@@ -166,5 +166,58 @@ def juegoAuto():
         imprimirintentos(intentos, canicas)
     if probando == canicas:
         print("Has ganado, el código correcto es:",canicas)
+
+def juegoAuto():
+    canicas = asignacion()
+    colores = ['red','green','yellow','blue','purple','orange','black','pink']
+    intentos = []
+    probando=['','','','']
+    espacios=[0,1,2,3]
+    print(canicas)
+    
+    while probando!=canicas:
+        for i in espacios:
+            probando[i]=colores[random.randint(0, len(colores)-1)]
+        print(probando, end=" ")
+        
+        aniadirintentoAuto(intentos,probando)
+        
+        acertadas = 0
+        exactas = 0
+        comparacion = []
+        auxiliar=[]
+        for i in range(4):
+            auxiliar.append(probando[i])
+        
+        for i in range(len(probando)):
+            color=True
+            for j in range(len(probando)):
+                if auxiliar[i]==canicas[j]:
+                    if auxiliar[i]==canicas[i]:
+                        exactas+=1
+                        for k in espacios:
+                            if k==i:
+                                espacios.remove(i)
+                                break
+                        for k in colores:
+                            if k==probando[i]:
+                                colores.remove(probando[i])
+                                break
+                    else:
+                        acertadas +=1
+                    auxiliar[i]=''     #Lleno ese espacio con blanco para que no se duplique el valor de las acertadas en caso de que el color se repita en el intento
+                    color=False
+            if color:
+                for k in colores:
+                    if k==probando[i]:
+                        colores.remove(probando[i])
+                        break
+        
+        comparacion.append(exactas)
+        comparacion.append(acertadas)
+        print(comparacion)
+        imprimirintentos(intentos, canicas)
+    if probando == canicas:
+        print("Has ganado, el código correcto es:",canicas)
     
 juegomanual()
